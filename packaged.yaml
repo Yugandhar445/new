@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  TodoCreate:
+    Properties:
+      CodeUri: s3://cloudacademylabs-sambucket-ec4w8m9tg2s4/65ac0832ce8cfa303d06e186b98816f9
+      Description: POST
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Properties:
+            Method: POST
+            Path: /todo
+          Type: Api
+      Handler: api.create_handler
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  TodoDelete:
+    Properties:
+      CodeUri: s3://cloudacademylabs-sambucket-ec4w8m9tg2s4/65ac0832ce8cfa303d06e186b98816f9
+      Description: DELETE
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Properties:
+            Method: DELETE
+            Path: /todo
+          Type: Api
+      Handler: api.delete_handler
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  TodoGet:
+    Properties:
+      CodeUri: s3://cloudacademylabs-sambucket-ec4w8m9tg2s4/65ac0832ce8cfa303d06e186b98816f9
+      Description: Get
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Properties:
+            Method: GET
+            Path: /todo
+          Type: Api
+      Handler: api.get_handler
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+  TodoUpdate:
+    Properties:
+      CodeUri: s3://cloudacademylabs-sambucket-ec4w8m9tg2s4/65ac0832ce8cfa303d06e186b98816f9
+      Description: PUT
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Properties:
+            Method: PUT
+            Path: /todo
+          Type: Api
+      Handler: api.update_handler
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Runtime: python3.6
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

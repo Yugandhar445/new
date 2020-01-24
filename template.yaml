@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Resources:
+  TodoGet:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: api.get_handler
+      Runtime: python3.6
+      CodeUri: ./todo
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Description: Get
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Type: Api
+          Properties:
+            Path: '/todo'
+            Method: GET
+  TodoCreate:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: api.create_handler
+      Runtime: python3.6
+      CodeUri: ./todo
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Description: POST
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Type: Api
+          Properties:
+            Path: '/todo'
+            Method: POST
+  TodoUpdate:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: api.update_handler
+      Runtime: python3.6
+      CodeUri: ./todo
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Description: PUT
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Type: Api
+          Properties:
+            Path: '/todo'
+            Method: PUT
+  TodoDelete:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: api.delete_handler
+      Runtime: python3.6
+      CodeUri: ./todo
+      Role: arn:aws:iam::373797391674:role/SamExecutionRole
+      Description: DELETE
+      Environment:
+        Variables:
+          TODO_TABLE: TodoList
+      Events:
+        ApiTodoListAPI:
+          Type: Api
+          Properties:
+            Path: '/todo'
+            Method: DELETE
+ 
